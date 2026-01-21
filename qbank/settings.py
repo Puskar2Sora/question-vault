@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG") == "True"
 
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(","),"https://question-vault-production.up.railway.app"
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
 CSRF_TRUSTED_ORIGINS = [
     "https://question-vault-production.up.railway.app",
