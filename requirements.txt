@@ -1,7 +1,7 @@
 Django
 mysql
 gunicorn
-mysqlclient
+mysqlclient>=2.2.1
 python-dotenv
 openai
 PyPDF2
