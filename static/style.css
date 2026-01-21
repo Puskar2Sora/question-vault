@@ -1,5 +1,5 @@
 /* =========================
-   CSS VARIABLES (dark)
+   CSS VARIABLES (light)
 ========================= */
 body.dark {
   --bg: #f4f6fb;
@@ -12,7 +12,7 @@ body.dark {
 }
 
 /* =========================
-   light MODE
+   dark MODE
 ========================= */
 :root {
   --bg: #0f172a;
@@ -235,4 +235,11 @@ footer {
   padding: 20px;
   font-size: 13px;
   color: var(--muted);
+}
+
+
+
+option {
+  background-color: var(--card);
+  color: var(--text);
 }

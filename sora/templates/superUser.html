@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
   <title>Question Bank Portal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
 
 </head>
 
@@ -47,6 +48,12 @@
           <div><label>Semester</label><select name="Semester">
               <option>1</option>
               <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
             </select></div>
 
           <div><label>Subject</label><input name="Subject"></div>
@@ -106,7 +113,7 @@
     <option value="Delhi University">
     <option value="IIT">
   </datalist>
-  <script src="/static/app1.js"></script>
+  <script src="{% static 'app1.js' %}"></script>
 
 </body>
 
