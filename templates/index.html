@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Question Vault</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<header>
+  <h1>📚 Question Vault</h1>
+  <button id="mode">🌙</button>
+</header>
+
+<form method="GET">
+<section class="filter-box">
+
+  <select name="university">
+    <option value="">University</option>
+    {% for university in universities %}
+      <option value="{{ university }}">{{ university }}</option>
+    {% endfor %}
+  </select>
+
+  <select name="course">
+    <option value="">Course</option>
+    {% for course in courses %}
+      <option value="{{ course }}">{{ course }}</option>
+    {% endfor %}
+  </select>
+
+  <select name="department">
+    <option value="">Department</option>
+    {% for department in departments %}
+      <option value="{{ department }}">{{ department }}</option>
+    {% endfor %}
+  </select>
+
+  <select name="semester">
+    <option value="">Semester</option>
+    {% for semester in semesters %}
+      <option value="{{ semester }}">{{ semester }}</option>
+    {% endfor %}
+  </select>
+
+  <select name="subject">
+    <option value="">Subject</option>
+    {% for subject in subjects %}
+      <option value="{{ subject }}">{{ subject }}</option>
+    {% endfor %}
+  </select>
+
+  <select name="topic">
+    <option value="">Topic</option>
+    {% for topic in topics %}
+      <option value="{{ topic }}">{{ topic }}</option>
+    {% endfor %}
+  </select>
+
+  <!-- 🔥 THIS IS THE KEY LINE -->
+  <input type="hidden" name="search" value="1">
+
+  <button id="filter" type="submit">Search</button>
+
+</section>
+</form>
+
+
+{% if questions %}
+<section class="cards">
+{% for q in questions %}
+  <div class="card">
+
+    <div class="badge">🔥 {{ q.frequency }} times</div>
+
+    <h3>{{ q.question }}</h3>
+
+    <p>
+      Marks: {{ q.marks }} · Last comes in year {{ q.years }}
+      
+    </p>
+
+  </div>
+{% empty %}
+  <p>No matching questions found</p>
+{% endfor %}
+</section>
+{% endif %}
+
+
+<script src="/static/app.js"></script>
+
+</body>
+</html>
