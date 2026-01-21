@@ -7,4 +7,3 @@ PyPDF2
 opencv-python
 numpy
 pymysql
-json
