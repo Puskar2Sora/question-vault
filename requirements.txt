@@ -8,3 +8,4 @@ PyPDF2
 opencv-python
 numpy
 cryptography
+whitenoise
