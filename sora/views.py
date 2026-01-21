@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect
 from .models import questions
 import mysql.connector as sql
@@ -19,48 +20,39 @@ topic = ''
 marks = 0
 
 
-def send_pdf_to_api(pdf_path):
-    api_url = "https://academic-question-backend.onrender.com"  # তোমার API URL
-    files = {'file': open(pdf_path, 'rb')}
 
-    response = requests.post(api_url, files=files)
-
-    if response.status_code == 200:
-        return response.json()  # এটি JSON রিটার্ন করবে
-    else:
-        raise Exception("API call failed with status code {}".format(response.status_code))
 
 
 def add_question(request):
     global question, frequency, years, university, course, department, semester, subject, topic, marks
     
-    if request.method == "POST" and request.POST.get("form_type") == "pdf_upload":
-        pdf_file = request.FILES.get("pdf_file")
-        if pdf_file:
-            # Save the uploaded PDF temporarily
-            fs = FileSystemStorage()
-            filename = fs.save(pdf_file.name, pdf_file)
-            pdf_path = fs.path(filename)
+    # if request.method == "POST" and request.POST.get("form_type") == "pdf_upload":
+    #     pdf_file = request.FILES.get("pdf_file")
+    #     if pdf_file:
+    #         # Save the uploaded PDF temporarily
+    #         fs = FileSystemStorage()
+    #         filename = fs.save(pdf_file.name, pdf_file)
+    #         pdf_path = fs.path(filename)
 
-            try:
-                # Call the external API and get JSON data
-                questions_json = send_pdf_to_api(pdf_path)
+    #         try:
+    #             # Call the external API and get JSON data
+    #             questions_json = send_pdf_to_api(pdf_path)
 
-                # Loop through the returned JSON and save to DB
-                for item in questions_json:
-                    questions.objects.create(
-                        question=item["question"],
-                        year=item["year"],
-                        marks=item["marks"]
-                    )
+    #             # Loop through the returned JSON and save to DB
+    #             for item in questions_json:
+    #                 questions.objects.create(
+    #                     question=item["question"],
+    #                     year=item["year"],
+    #                     marks=item["marks"]
+    #                 )
 
-                return HttpResponse("PDF processed and questions saved!")
+    #             return HttpResponse("PDF processed and questions saved!")
 
-            except Exception as e:
-                return HttpResponse("Failed to process PDF: " + str(e))
+    #         except Exception as e:
+    #             return HttpResponse("Failed to process PDF: " + str(e))
     
     if request.method == "POST" and request.POST.get("form_type") == "manual_entry":
-        m=sql.connect(host="localhost",user="root",password="Example@2006#",database="qbank")
+        m=sql.connect(host=os.getenv("DB_HOST"),user=os.getenv("DB_USER"),password=os.getenv("DB_PASSWORD"),database=os.getenv("DB_NAME"))
         cursor=m.cursor()
         data = request.POST
         
