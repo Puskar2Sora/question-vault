@@ -1,4 +1,5 @@
 Django
+mysql
 gunicorn
 mysqlclient
 python-dotenv
@@ -7,4 +8,5 @@ PyPDF2
 opencv-python
 numpy
 pymysql
-json
+
+mysql-connector-python
