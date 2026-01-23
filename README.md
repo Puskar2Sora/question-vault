@@ -1,8 +1,5 @@
-# 🏛️ Question Vault
-
 <div align="center">
-  <img src="https://capsule-render.vercel.app/render?type=venom&color=092e20&height=250&section=header&text=QUESTION%20VAULT&fontSize=80&animation=soft&desc=Powered%20by%20Django%20&%20SQL&descSize=20&descAlignY=70" width="100%" />
-
+Question Vault
   <br/>
 
   <p>
