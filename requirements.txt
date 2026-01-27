@@ -1,0 +1,15 @@
+Django>=4.2
+gunicorn
+mysqlclient==2.2.4
+mysql-connector-python
+python-dotenv
+openai
+PyPDF2
+opencv-python
+numpy
+cryptography
+whitenoise
+PyMuPDF
+pdfplumber
+nltk
+

@@ -1,0 +1,186 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================= THEME VARIABLES ================= */
+:root {
+  --bg: #0f172a;
+  --text: #f1f5f9;
+  --glass: rgba(255,255,255,0.12);
+  --glass-hover: rgba(255,255,255,0.22);
+}
+
+body.light {
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --glass: rgba(255,255,255,0.9);
+  --glass-hover: rgba(255,255,255,1);
+}
+
+/* ================= BODY ================= */
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, Arial, sans-serif;
+  transition: background 0.4s, color 0.4s;
+  overflow-x: hidden;
+}
+
+/* ================= BACKGROUND GLOW ================= */
+.background {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, #6366f1, transparent 45%),
+    radial-gradient(circle at bottom right, #ec4899, transparent 45%);
+  filter: blur(90px);
+  z-index: -1;
+}
+
+body.light .background {
+  background:
+    radial-gradient(circle at top left, #c7d2fe, transparent 45%),
+    radial-gradient(circle at bottom right, #fbcfe8, transparent 45%);
+}
+
+/* ================= HEADER ================= */
+header {
+  padding: 28px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 26px;
+}
+
+header button {
+  border: none;
+  cursor: pointer;
+  background: var(--glass);
+  padding: 10px 14px;
+  border-radius: 50%;
+  font-size: 18px;
+  color: var(--text);
+  transition: 0.3s;
+}
+
+header button:hover {
+  background: var(--glass-hover);
+}
+
+/* ================= FILTER BOX ================= */
+.filter-box {
+  width: 85%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  background: var(--glass);
+  backdrop-filter: blur(25px);
+  padding: 18px;
+  border-radius: 20px;
+}
+
+.filter-box select {
+  border: none;
+  outline: none;
+  background: var(--glass-hover);
+  color: var(--text);
+  padding: 12px;
+  border-radius: 12px;
+}
+.filter-box select option {
+  background: var(--bg);
+  color: var(--text);
+}
+
+
+.filter-box select:hover {
+  cursor: pointer;
+}
+
+/* ================= CARDS ================= */
+.cards {
+  width: 85%;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  position: relative;
+  background: var(--glass);
+  backdrop-filter: blur(25px);
+  padding: 24px;
+  border-radius: 22px;
+  cursor: pointer;
+  transition: 0.4s;
+  animation: fadeUp 0.6s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  background: var(--glass-hover);
+}
+
+.card h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+/* ================= BADGE ================= */
+.badge {
+  position: absolute;
+  top: -12px;
+  right: 18px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: white;
+}
+
+#filter {
+  grid-column: span 1 / span 1;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#filter:hover {
+  background: #2563eb;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  header { padding: 20px; }
+  .filter-box, .cards { width: 95%; }
+}

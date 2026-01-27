@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Question Bank Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+
+  <header>
+    <h1>Question Bank Management</h1>
+    <div class="toggle" onclick="toggleTheme()">🌙 / ☀️</div>
+  </header>
+
+  <div class="container">
+
+    <div class="tabs">
+      <div class="tab active" onclick="showSection(0)">Upload PDF / Image</div>
+      <div class="tab" onclick="showSection(1)">Manual Question Entry</div>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="section active">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+          <input type="hidden" name="form_type" value="pdf_upload">
+        <div class="upload-box" id="uploadBox">
+          <input id="pdfInput" type="file" name="pdf_file" accept="application/pdf,image/*" hidden />
+          Drag & Drop PDF / Image<br>or click to browse
+        </div>
+
+        <div class="grid" style="margin-top:20px">
+          <div><label>University</label><input list="uni" name="University"></div>
+          <div><label>Year</label><input type="number" name="Year"></div>
+          <div><label>Course</label>
+            <select name="Course">
+              <option>B.Tech</option>
+              <option>M.Tech</option>
+            </select>
+          </div>
+
+          <div><label>Semester</label><select name="Semester">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+            </select></div>
+
+          <div><label>Subject</label><input name="Subject"></div>
+
+          <div><label>Department</label><input list="uni" name="Department"></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-primary" type="submit">
+            Upload & Convert
+          </button>
+        </div>
+      </form>
+
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="manual_entry">
+        <div class="grid">
+          <div style="grid-column:1/-1">
+            <label>Question</label>
+            <textarea name="Question"></textarea>
+          </div>
+          <div><label>University</label><input name="University"></div>
+          <div><label>Year</label><input type="number" name="Year"></div>
+          <div><label>Semester</label><select name="Semester">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+            </select></div>
+          <div><label>Subject</label><input name="Subject"></div>
+          <div><label>Department</label><input list="uni" name="Department"></div>
+          <div><label>Course</label><input list="uni" name="Course"></div>
+          <div><label>Topic</label><input name="Topic"></div>
+          <div><label>Marks</label><input type="number" name="Marks"></div>
+        </div>
+
+        <div class="actions">
+
+          <button class="btn-primary" type="submit">Submit Question</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <datalist id="uni">
+    <option value="Calcutta University">
+    <option value="Delhi University">
+    <option value="IIT">
+  </datalist>
+  <script src="{% static 'app1.js' %}"></script>
+
+</body>
+
+</html>
